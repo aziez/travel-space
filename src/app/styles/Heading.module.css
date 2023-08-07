@@ -1,0 +1,29 @@
+/* Heading.module.css */
+
+/* Add underline to active Nav link */
+.dropdown-item.active {
+    position: relative;
+}
+
+.dropdown-item.active:after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+}
+
+/* Adjust other styles as needed */
+
+@media (max-width: 768px) {
+    .navbar-collapse {
+        background-color: rgba(0, 0, 0, 0.7);
+        /* Change background color of the mobile menu */
+        backdrop-filter: blur(10px);
+        /* Add backdrop blur effect */
+        padding: 10px;
+        /* Adjust padding for mobile menu */
+    }
+}
