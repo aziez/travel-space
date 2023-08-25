@@ -32,7 +32,9 @@ const HomeContent = () => {
             <h3 className="text-base font-extralight">
               SO YOU WANT TO TRAVEL TO
             </h3>
-            <h1 className="font-serif text-8xl">SPACE</h1>
+            <h1 style={{ fontFamily: "Bellefair" }} className="text-8xl">
+              SPACE
+            </h1>
             <p className="mt-8 text-sm ">
               Let’s face it; if you want to go to space, you might as well
               genuinely go to outer space and not hover kind of on the edge of
@@ -42,7 +44,7 @@ const HomeContent = () => {
           </div>
           {/* Second Column */}
           <div className="flex items-center justify-center flex-1 py-24 space-x-8">
-            <HomeButton />
+            <HomeButton url={"/destination"} />
           </div>
         </div>
       </div>

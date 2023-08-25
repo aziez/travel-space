@@ -2,32 +2,12 @@
 
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import * as THREE from "three";
-// import earthImg from "";
-import { Suspense, useEffect, useRef } from "react";
-import Loading from "./Loading";
-import {
-  CameraControls,
-  OrbitControls,
-  Preload,
-  useGLTF,
-} from "@react-three/drei";
+import { useEffect, useRef } from "react";
+import { CameraControls, OrbitControls, Preload } from "@react-three/drei";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-export function Model(props) {
-  const { nodes, materials } = useGLTF("./assets/3d//moon.glb");
-  return (
-    <group {...props} dispose={null}>
-      <mesh
-        geometry={nodes.Cube008.geometry}
-        material={materials["Default OBJ.005"]}
-      />
-    </group>
-  );
-}
-
-useGLTF.preload("./assets/3d/moon.glb");
-
-const Planet = ({ position, userData, map }) => {
-  const base = useLoader(THREE.TextureLoader, "./assets/3d/mars/texture.jpg");
+const Planet = ({ position, planetData }) => {
+  const base = useLoader(THREE.TextureLoader, planetData?.images?.map);
   const normal = useLoader(
     THREE.TextureLoader,
     "/assets/3d/mars/mars_normal.jpg"
@@ -41,7 +21,18 @@ const Planet = ({ position, userData, map }) => {
     meshRef.current.rotation.y = a;
   });
 
+  const gltf = useLoader(GLTFLoader, planetData?.model);
+  const groupRef = useRef();
+
+  useEffect(() => {
+    if (groupRef.current && gltf.scene) {
+      groupRef.current.add(gltf.scene);
+    }
+  }, [gltf.scene]);
+
   return (
+    // <group dispose={null} ref={groupRef} position={[0, 0, 0]} />
+    // {/* <primitive object={gltf.scene} /> */}
     <mesh
       visible
       castShadow
@@ -72,7 +63,7 @@ const Planet = ({ position, userData, map }) => {
   );
 };
 
-const PlanetCanvas = () => {
+const PlanetCanvas = ({ data }) => {
   return (
     <Canvas
       frameloop="demand"
@@ -81,11 +72,18 @@ const PlanetCanvas = () => {
       gl={{ preserveDrawingBuffer: true }}
     >
       <CameraControls maxDistance={40} minDistance={6.5} />
-      {/* <OrbitControls enableZoom={false} /> */}
-      <Planet />
+
+      <Planet planetData={data} />
 
       <Preload all />
     </Canvas>
+    //     <Canvas>
+    //       <ambientLight intensity={0.5} />
+    //       <pointLight position={[10, 10, 10]} />
+    //
+    //       <Planet planetData={data} />
+    //       <OrbitControls />
+    //     </Canvas>
   );
 };
 

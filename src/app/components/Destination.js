@@ -32,7 +32,6 @@ const DestinationContent = () => {
       <div className="flex items-start mt-5">
         <h3 className="mx-4 text-sm text-gray-400 sm:text-2xl"> 01 </h3>
         <h3 className="text-sm text-white sm:text-2xl">
-          {" "}
           PICK YOUR DESTINATION
         </h3>
       </div>
