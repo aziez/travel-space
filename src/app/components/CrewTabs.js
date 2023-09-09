@@ -1,82 +1,78 @@
-import { motion, useTransform, useViewportScroll } from "framer-motion";
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
-import { useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { useEffect, useState } from "react";
 import { Carousel } from "react-bootstrap";
 
-const CrewTabs = ({ data }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const { scrollY } = useViewportScroll();
-  const y = useTransform(scrollY, [0, 400], [0, -100]);
+const CustomCarouselIndicators = ({ items, activeIndex, onClick }) => {
+  return (
+    <ul className="absolute left-0 right-0 flex justify-center md:justify-start custom-carousel-indicators bottom-4">
+      {items.map((item, index) => (
+        <li
+          key={index}
+          onClick={() => onClick(index)}
+          className={`${
+            index === activeIndex ? "bg-white" : "bg-gray-300"
+          } inline-block w-3 h-3 rounded-full mx-1 cursor-pointer`}
+        ></li>
+      ))}
+    </ul>
+  );
+};
 
-  const handleSelect = (selectedIndex) => {
-    setActiveIndex(selectedIndex);
-  };
+const CrewTabs = () => {
+  const [data, setData] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    async function getCrew() {
+      try {
+        const res = await fetch("./data/data.json");
+        const crew = await res.json();
+        setData(crew?.crew);
+      } catch (error) {
+        throw error;
+      }
+    }
+
+    getCrew();
+  }, []);
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="w-full h-full m-10 ">
       <Carousel
+        className="w-full h-fit"
         activeIndex={activeIndex}
-        onSelect={handleSelect}
-        controls={false}
+        onSelect={(index) => setActiveIndex(index)} // Untuk mengatur indeks aktif
         indicators={false}
+        controls={false}
       >
-        {data?.map((item, index) => {
-          return (
-            <Carousel.Item key={index} className="h-full">
-              <motion.div
-                style={{ y }}
-                className="relative flex flex-row items-center content-center justify-between w-full h-full"
-              >
-                <div className="pr-4">
-                  <motion.h4
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="font-serif text-xl text-gray-400 md:text-3xl lg:text-3xl"
-                  >
-                    {item.role}
-                  </motion.h4>
-                  <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                    className="font-serif text-2xl text-white md:text-5xl lg:text-5xl"
-                  >
-                    {item.name}
-                  </motion.h1>
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 }}
-                  >
-                    {item.bio}
-                  </motion.p>
-                </div>
-
-                <div className="absolute inset-x-0 bottom-0">
-                  <Image
-                    layout="fill"
-                    objectFit="cover"
-                    src={`/${item.images?.png}`}
-                    alt={"images"}
-                  />
-                </div>
-              </motion.div>
-            </Carousel.Item>
-          );
-        })}
-      </Carousel>
-      <div className="absolute flex flex-col items-center justify-center left-4 bottom-4">
-        {data?.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => handleSelect(index)}
-            className={`indicator-button w-3 h-3 rounded-full my-1 ${
-              index === activeIndex ? "bg-blue-500" : "bg-gray-300"
-            }`}
-          ></button>
+        {data?.map((item, index) => (
+          <Carousel.Item key={index} interval={500}>
+            <Row>
+              <Col md={6} sm={12}>
+                <h2 className="text-gray-400 ">{item?.role}</h2>
+                <h1 className="text-white">{item?.name}</h1>
+                <p className="text-white">{item?.bio}</p>
+              </Col>
+              <Col className="flex justify-center " md={6} sm={12}>
+                <img
+                  src={`/${item?.images?.png}`}
+                  alt="images"
+                  className="object-scale-down object-center w-1/2 max-h-90"
+                />
+              </Col>
+            </Row>
+          </Carousel.Item>
         ))}
-      </div>
+      </Carousel>
+      <CustomCarouselIndicators
+        items={data || []}
+        activeIndex={activeIndex}
+        onClick={(index) => setActiveIndex(index)}
+      />
+
+      {/* Gunakan komponen indikator kustom */}
     </div>
   );
 };

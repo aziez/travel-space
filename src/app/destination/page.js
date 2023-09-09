@@ -7,10 +7,10 @@ import DestinationContent from "../components/Destination";
 
 const Destination = () => {
   return (
-    <>
+    <div className="w-screen h-screen overflow-hidden">
       <Heading active={"/destination"} />
       <DestinationContent />
-    </>
+    </div>
   );
 };
 export default Destination;

@@ -2,16 +2,15 @@
 import { Canvas } from "@react-three/fiber";
 import Planet from "../components/Planet";
 import Heading from "../components/Heading";
-import { Container } from "react-bootstrap";
-import DestinationContent from "../components/Destination";
 import CrewContent from "../components/Crew";
 
-const Destination = () => {
+const Crew = () => {
   return (
-    <>
+    <div className="w-screen h-screen overflow-hidden">
       <Heading active={"/crew"} />
       <CrewContent />
-    </>
+    </div>
   );
 };
-export default Destination;
+
+export default Crew;
