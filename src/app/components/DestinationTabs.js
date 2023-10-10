@@ -45,24 +45,24 @@ const DestinationTabs = ({ text }) => {
               >
                 {data.map((item) => (
                   <Tab
-                    key={item.name}
+                    key={item?.name}
                     tabClassName="text-white"
-                    eventKey={item.name}
-                    title={item.name}
+                    eventKey={item?.name}
+                    title={item?.name}
                   >
                     <div className="container">
                       <h1 className="font-serif text-5xl text-center text-white md:text-9xl lg:text-9xl">
-                        {item.name.toUpperCase()}
+                        {item?.name?.toUpperCase()}
                       </h1>
                       <p className="px-6 text-sm text-white">
-                        {item.description}
+                        {item?.description}
                       </p>
                       <div className="w-full border-b-4 border-gray-400"></div>
                       <div className="flex flex-row items-center content-between justify-center gap-8 text-center sm:flex-col">
                         <div>
                           <p className="text-sm text-white ">AVG. DISTANCE</p>
                           <p className="text-sm font-bold text-white">
-                            {item.distance}
+                            {item?.distance}
                           </p>
                         </div>
                         <div className="text-center">
@@ -70,7 +70,7 @@ const DestinationTabs = ({ text }) => {
                             EST. TRAVEL TIME
                           </p>
                           <p className="text-sm font-bold text-white">
-                            {item.travel}
+                            {item?.travel}
                           </p>
                         </div>
                       </div>
