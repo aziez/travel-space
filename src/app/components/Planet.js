@@ -10,9 +10,9 @@ const Planet = ({ position, planetData }) => {
   const base = useLoader(THREE.TextureLoader, planetData?.images?.map);
   const normal = useLoader(
     THREE.TextureLoader,
-    "/assets/3d/mars/mars_normal.jpg"
+    "assets/3d/mars/mars_normal.jpg"
   );
-  const bump = useLoader(THREE.TextureLoader, "/assets/3d/mars/mars_b.jpg");
+  const bump = useLoader(THREE.TextureLoader, "assets/3d/mars/mars_b.jpg");
   const meshRef = useRef();
 
   useFrame(({ clock }) => {
