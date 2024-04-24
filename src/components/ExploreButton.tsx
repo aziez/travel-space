@@ -6,7 +6,7 @@ function ExploreButton() {
   const buttonStyle = {
     hover: {
       scale: 1.1,
-      boxShadow: "10px 10px 0px 60px rgba(255, 255, 255, .8)",
+      boxShadow: "10px 10px 10px 30px rgba(255, 255, 255, .8)",
     },
     pressed: {
       scale: 0.5,

@@ -9,6 +9,8 @@ import { useDimensions } from "./navbar/use-dimensions";
 import MenuToogle from "./navbar/MenuToogle";
 import { MenuItem } from "./navbar/MenuItem";
 import Navigation from "./navbar/Navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const sidebar = {
   open: (height = 1000) => ({
@@ -23,7 +25,7 @@ const sidebar = {
     clipPath: "circle(25px at 80% 50px)",
     transition: {
       delay: 0.5,
-      // type: "spring",
+      type: "spring",
       stiffness: 400,
       damping: 40,
     },
@@ -33,23 +35,30 @@ const sidebar = {
 function Navbar() {
   const [isOpen, setisOpen] = useCycle(false, true);
   const containerref = useRef(null);
+  const pathName = usePathname();
+
+  console.log(pathName);
 
   const navItems = [
     {
       id: 1,
       text: "HOME",
+      current: true,
     },
     {
       id: 2,
       text: "DESTINATION",
+      current: false,
     },
     {
       id: 3,
       text: "CREW",
+      current: false,
     },
     {
       id: 4,
       text: "TECHNOLOGY",
+      current: false,
     },
   ];
 
@@ -71,38 +80,19 @@ function Navbar() {
   };
 
   return (
-    <nav className="shadow-xl flex  justify-normal items-center h-24 max-w[1024px]  px-4 ">
+    <nav className="shadow-xl flex  justify-normal items-center h-24 max-w[100%]  ">
       <img
-        className="w-10 h-10 rounded-full"
+        className="w-10 h-10 rounded-full mx-4"
         alt="logo"
         src={"/assets/shared/logo.svg"}
       />
 
-      <svg
-        className="hidden md:flex -mr-28"
-        width="800"
-        height="600"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <line
-          stroke-linecap="undefined"
-          stroke-linejoin="undefined"
-          id="svg_1"
-          y2="297"
-          x2="775.44513"
-          y1="297"
-          x1="26"
-          stroke-width="4"
-          stroke="gray"
-          fill="none"
-        />
-      </svg>
+      <div className="hidden md:flex w-[90%] h-1 bg-slate-50 border "></div>
 
       <motion.ul
         initial="hidden"
         animate="visible"
-        variants={ulStyle}
-        className="hidden md:flex z-10 bg-white border  bg-opacity-25 text-black w-[45%] items-center justify-start backdrop-blur-[20px] p-4 rounded-lg"
+        className="hidden md:flex justify-end z-10 bg-white   bg-opacity-25 text-black w-[100%] items-center backdrop-blur-md p-4 "
       >
         {navItems.map((item) => (
           <motion.li
@@ -114,10 +104,14 @@ function Navbar() {
               transition: { ease: "easeOut" },
             }}
             key={item.id}
-            className="p-4 font-heading hover:cursor-pointer text-black relative before:z-10 before:content-[''] before:w-0 before:h-[3px] before:absolute before:bottom-0 before:left-0 before:bg-black before:hover:w-full before:transition-all before:duration-300"
           >
-            <b>{`0${item.id} `}</b>
-            {item.text}
+            <Link
+              href={item.text.toLowerCase()}
+              className="p-4 font-heading hover:cursor-pointer text-white relative before:z-10 before:content-[''] before:w-0 before:h-[3px] before:absolute before:-bottom-1 before:left-0 before:bg-white before:hover:w-full before:transition-all before:duration-300"
+            >
+              <b>{`0${item.id} `}</b>
+              {item.text}
+            </Link>
           </motion.li>
         ))}
       </motion.ul>

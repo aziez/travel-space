@@ -1,3 +1,5 @@
+import Navbar from "./Navbar";
+
 function Layout({ children, className }: any) {
   return (
     <main

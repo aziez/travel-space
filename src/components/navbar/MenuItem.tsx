@@ -1,5 +1,6 @@
 import * as React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const variants = {
   open: {
@@ -27,9 +28,12 @@ export const MenuItem = ({ i, text }: any) => {
       className=" list-none mb-3  flex items-center align-basline cursor-pointer"
     >
       <div className="w-[200px] h-[40px]  mr-4 ">
-        <h1 className="p-4 font-heading hover:cursor-pointer text-white relative before:z-10 before:content-[''] before:w-0 before:h-[3px] before:absolute before:bottom-0 before:left-0 before:bg-white before:hover:w-full before:transition-all before:duration-300">
+        <Link
+          href={`/${text}`}
+          className="p-4 font-heading text-md hover:cursor-pointer text-white relative before:z-10 before:content-[''] before:w-0 before:h-[3px] before:absolute before:bottom-0 before:left-0 before:bg-white before:hover:w-full before:transition-all before:duration-300"
+        >
           <b>0{i}</b> {text}
-        </h1>
+        </Link>
       </div>
       {/* <div className="w-[200px] h-[20px] flex[1]" style={style}>
         MENU

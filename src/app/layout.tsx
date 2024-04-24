@@ -3,6 +3,7 @@ import { Inter as FontSans } from "next/font/google";
 import "@/styles/globals.css";
 import { cn } from "@/lib/utils";
 import { FontHeading, FontSpan, FontSubHeading } from "@/styles/font";
+import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Space Tourism App",
