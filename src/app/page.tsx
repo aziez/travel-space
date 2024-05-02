@@ -7,7 +7,6 @@ export default function Home() {
   return (
     <Layout className="bg-home-mobile sm:bg-home-mobile md:bg-home-tablet lg:bg-home-desktop xl:bg-home-desktop 2xl:bg-home-desktop">
       <div>
-        <Navbar />
         <ExploreButton />
       </div>
     </Layout>

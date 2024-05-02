@@ -35,9 +35,9 @@ const sidebar = {
 function Navbar() {
   const [isOpen, setisOpen] = useCycle(false, true);
   const containerref = useRef(null);
-  const pathName = usePathname();
+  const currentRute = usePathname();
 
-  console.log(pathName);
+  // console.log(pathName);
 
   const navItems = [
     {
@@ -80,7 +80,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="shadow-xl flex  justify-normal items-center h-24 max-w[100%]  ">
+    <nav className="shadow-xl z-[100] fixed top-0 left-0 right-0 flex  justify-normal items-center h-24 max-w[100%]  ">
       <img
         className="w-10 h-10 rounded-full mx-4"
         alt="logo"
@@ -107,7 +107,11 @@ function Navbar() {
           >
             <Link
               href={item.text.toLowerCase()}
-              className="p-4 font-heading hover:cursor-pointer text-white relative before:z-10 before:content-[''] before:w-0 before:h-[3px] before:absolute before:-bottom-1 before:left-0 before:bg-white before:hover:w-full before:transition-all before:duration-300"
+              className={`p-4 font-heading ${
+                currentRute === "/" + item.text.toLowerCase()
+                  ? "before:w-full"
+                  : "before:w-0"
+              }  hover:cursor-pointer text-white relative before:z-10 before:content-[''] before:w-0 before:h-[3px] before:absolute before:-bottom-1 before:left-0 before:bg-white before:hover:w-full before:transition-all before:duration-300`}
             >
               <b>{`0${item.id} `}</b>
               {item.text}
@@ -123,7 +127,7 @@ function Navbar() {
         className="md:hidden absolute top-0 right-0  h-full "
       >
         <motion.div
-          className="w-[300px] absolute top-0 right-0 bg-black opacity-30 backdrop-blur-xl h-[100%]"
+          className="w-[300px] absolute top-0 right-0  h-[100%]"
           variants={sidebar}
         />
         <Navigation />

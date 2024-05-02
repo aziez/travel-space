@@ -15,7 +15,7 @@ function Navigation() {
   return (
     <motion.ul
       variants={variants}
-      className="flex mt-28 flex-col justify-items-start"
+      className="flex mt-28 flex-col justify-items-start "
     >
       {navItems.map((el, index) => (
         <MenuItem i={index} text={el.text} key={el.id} />
