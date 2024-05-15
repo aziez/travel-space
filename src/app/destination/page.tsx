@@ -24,7 +24,7 @@ const TabsComponent = (data: any) => {
   const TabListHeading = () => {
     return (
       <TabsList className="bg-transparent grid w-full grid-cols-6 items-center justify-center desktop:justify-start desktop:grid-cols-5  ">
-        <div className="desktop:hidden"></div>
+        <TabsTrigger value="" className="desktop:hidden"></TabsTrigger>
         {destinations.map((destination: any, index: number) => (
           <TabsTrigger
             className="relative text-white bg-transparent font-subheading uppercase before:z-10 before:content-['']  before:h-[3px] before:absolute before:-bottom-1 before:left-0 before:bg-white hover:before:w-full before:transition-all before:duration-300 before:w-full rounded-none outline-none 
@@ -35,7 +35,7 @@ const TabsComponent = (data: any) => {
             {destination?.name}
           </TabsTrigger>
         ))}
-        <div></div>
+        <TabsTrigger value=""></TabsTrigger>
       </TabsList>
     );
   };
@@ -68,7 +68,7 @@ const TabDescription = (desc: any) => {
   // console.log(data);
 
   return (
-    <div className="mx-4 my-4 h-full  tablet:px-10">
+    <>
       <h1 className="text-6xl  text-wrap font-heading uppercase desktop:text-9xl">
         {data?.name}
       </h1>
@@ -90,7 +90,7 @@ const TabDescription = (desc: any) => {
           </span>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -99,15 +99,17 @@ export default function Destination() {
 
   return (
     <Layout className="bg-destination-mobile mobile:bg-destination-mobile tablet:bg-destination-tablet desktop:bg-destination-desktop xl:bg-destination-desktop 2xl:bg-destination-desktop">
-      <h2 className="text-2xl font-subheading  text-white text-center desktop:text-start desktop:text-4xl ">
-        <b>01</b> Pick Your Destination
-      </h2>
-      <div className="text-justify text-wrap">
-        {isLoading ? (
-          <SkeletonTabs />
-        ) : (
-          <TabsComponent data={data?.data?.destinations} />
-        )}
+      <div className="text-white">
+        <h2 className="text-2xl font-subheading text-white text-center desktop:text-start desktop:text-4xl">
+          <b>01</b> Pick Your Destination
+        </h2>
+        <div className="text-justify text-wrap w-full min-h-screen flex flex-col justify-center items-center">
+          {isLoading ? (
+            <SkeletonTabs />
+          ) : (
+            <TabsComponent data={data?.data?.destinations} />
+          )}
+        </div>
       </div>
     </Layout>
   );
