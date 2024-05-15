@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
-import "@/styles/globals.css";
+import "@/styles/globals.css"; 
 import { cn } from "@/lib/utils";
 import { FontHeading, FontSpan, FontSubHeading } from "@/styles/font";
-import Navbar from "@/components/Navbar";
+import Providers from "@/components/ProgressBar";
 
 export const metadata: Metadata = {
   title: "Space Tourism App",
@@ -24,14 +24,13 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
           fontSans.variable,
           FontHeading.variable,
           FontSubHeading.variable,
           FontSpan.variable
         )}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

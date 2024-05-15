@@ -11,15 +11,16 @@ const config = {
   ],
   prefix: "",
   theme: {
-    // screens: {
-    //   //   desktop: "1280px", // Desktop
-    //   //   laptop: "1024px", // Laptop
-    //   //   tablet: "768px", // Tablet
-    //   //   mobile: "640px", // Mobile
-    // },
+    screens: {
+      // Custom screen sizes for mobile, tablet, and desktop
+      mobile: { max: "639px" },
+      tablet: { min: "640px", max: "1023px" },
+      desktop: { min: "1024px" },
+    },
     container: {
       center: true,
       padding: "2rem",
+      
     },
     extend: {
       backgroundImage: (theme) => ({

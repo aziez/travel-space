@@ -6,7 +6,7 @@ function ExploreButton() {
   const buttonStyle = {
     hover: {
       scale: 1.1,
-      boxShadow: "4px 4px 4px 40px  rgba(255, 255, 255, 0.8)",
+      boxShadow: "3px 3px 3px 30px  rgba(255, 255, 255, 0.8)",
     },
     pressed: {
       scale: 0.5,
@@ -21,7 +21,7 @@ function ExploreButton() {
       whileHover={"hover"}
       whileTap={"pressed"}
       variants={buttonStyle}
-      className="flex items-center justify-center w-60 h-60 rounded-full center "
+      className={`flex items-center justify-center rounded-full center h-40 w-40 tablet:h-60 tablet:w-60 desktop:h-60 desktop:w-60`}
     >
       <Button
         variant={"outline"}

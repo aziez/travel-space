@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { MenuItem } from "./MenuItem";
+
 const variants = {
   open: {
     transition: { staggerChildren: 0.07, delayChildren: 0.2 },
@@ -10,21 +11,6 @@ const variants = {
     transition: { staggerChildren: 0.05, staggerDirection: -1 },
   },
 };
-
-function Navigation() {
-  return (
-    <motion.ul
-      variants={variants}
-      className="flex mt-28 flex-col justify-items-start "
-    >
-      {navItems.map((el, index) => (
-        <MenuItem i={index} text={el.text} key={el.id} />
-      ))}
-    </motion.ul>
-  );
-}
-
-export default Navigation;
 
 const navItems = [
   {
@@ -44,3 +30,18 @@ const navItems = [
     text: "TECHNOLOGY",
   },
 ];
+
+function Navigation() {
+  return (
+    <motion.ul
+      variants={variants}
+      className="flex h-[48px] flex-col justify-items-start"
+    >
+      {navItems.map((el, index) => (
+        <MenuItem i={index} text={el.text} key={el.id} />
+      ))}
+    </motion.ul>
+  );
+}
+
+export default Navigation;

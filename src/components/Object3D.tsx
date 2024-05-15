@@ -34,7 +34,7 @@ export default function Scene({ model }: any) {
       camera={{ position: [-0.5, 100, 2] }}
       shadows
       gl={{ preserveDrawingBuffer: true }}
-      className="w-full h-ful  "
+      style={{ width: "100%", height: "100%" }}
     >
       <ambientLight intensity={Math.PI / 2} />
       <spotLight
