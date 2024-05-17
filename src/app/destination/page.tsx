@@ -100,7 +100,7 @@ export default function Destination() {
   return (
     <Layout className="bg-destination-mobile mobile:bg-destination-mobile tablet:bg-destination-tablet desktop:bg-destination-desktop xl:bg-destination-desktop 2xl:bg-destination-desktop">
       <div className="text-white">
-        <h2 className="text-2xl font-subheading text-white text-center desktop:text-start desktop:text-4xl">
+        <h2 className="text-2xl uppercase font-subheading text-white text-center desktop:text-start desktop:text-4xl">
           <b>01</b> Pick Your Destination
         </h2>
         <div className="text-justify text-wrap w-full min-h-screen flex flex-col justify-center items-center">

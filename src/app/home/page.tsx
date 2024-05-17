@@ -9,7 +9,7 @@ export default function Home() {
     <Layout className="bg-home-mobile mobile:bg-home-mobile tablet:bg-home-tablet desktop:bg-home-desktop xl:bg-home-desktop 2xl:bg-home-desktop">
       <div className="text-center h-screen text-wrap flex flex-col items-center justify-center desktop:flex-row desktop:text-start">
         <div className="text-white block w-full desktop:w-1/2">
-          <h3 className="text-xl font-subheading py-4 tablet:text-4xl desktop:text-4xl">
+          <h3 className="text-xl uppercase font-subheading py-4 tablet:text-4xl desktop:text-4xl">
             So, You want to travel to
           </h3>
           <h1 className="font-heading text-7xl mt-3 mb-6 mobile:my-4 tablet:text-9xl desktop:text-9xl">

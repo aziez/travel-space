@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
-import "@/styles/globals.css"; 
+import "@/styles/globals.css";
 import { cn } from "@/lib/utils";
 import { FontHeading, FontSpan, FontSubHeading } from "@/styles/font";
 import Providers from "@/components/ProgressBar";
