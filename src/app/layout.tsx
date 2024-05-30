@@ -4,6 +4,11 @@ import "@/styles/globals.css";
 import { cn } from "@/lib/utils";
 import { FontHeading, FontSpan, FontSubHeading } from "@/styles/font";
 import Providers from "@/components/ProgressBar";
+import "swiper/css";
+// import "swiper/less";
+
+import "swiper/css/pagination";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const metadata: Metadata = {
   title: "Space Tourism App",

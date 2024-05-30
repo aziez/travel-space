@@ -1,15 +1,25 @@
 import Navbar from "./Navbar";
 import { ScrollArea } from "./ui/scroll-area";
 
-function Layout({ children, className }: any) {
+interface LayoutProps {
+  children: React.ReactNode;
+  className?: string;
+  scrolled?: boolean;
+}
+
+function Layout({ children, className = "", scrolled = true }: LayoutProps) {
   return (
     <main
-      className={`w-full h-full fixed overscroll-none overscroll-y-none overscroll-x-none	overflow-hidden  bg-no-repeat bg-cover ${className}`}
+      className={`w-full h-full fixed overflow-hidden bg-no-repeat bg-cover ${className}`}
     >
       <Navbar />
-      <ScrollArea className="h-full overflow-auto py-4 mobile:pt-0 mobile:pb-8">
-        <div className="mx-8">{children}</div>
-      </ScrollArea>
+      {scrolled ? (
+        <ScrollArea className="h-full py-4 mobile:pt-0 mobile:pb-8 rounded overflow-hidden shadow-[0_2px_10px] shadow-black">
+          {children}
+        </ScrollArea>
+      ) : (
+        <>{children}</>
+      )}
     </main>
   );
 }
