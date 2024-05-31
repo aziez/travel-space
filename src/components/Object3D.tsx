@@ -4,7 +4,7 @@ import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { GLTF, GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 function Object3D(props: any) {
   const ref = useRef<THREE.Mesh>(null!);
@@ -13,14 +13,25 @@ function Object3D(props: any) {
   const [hovered, hover] = useState(false);
   const [clicked, click] = useState(false);
 
-  useFrame((state: any, delta: any) => (ref.current.rotation.y += delta));
+  useFrame((state: any, delta: any) => {
+    if (ref.current) {
+      ref.current.rotation.y += delta;
+    }
+  });
+
+  const getScene = (gltf: GLTF | GLTF[]): THREE.Group => {
+    if (Array.isArray(gltf)) {
+      return gltf[0]?.scene;
+    }
+    return gltf?.scene;
+  };
 
   return (
     <group {...props} dispose={null}>
       <primitive
         ref={ref}
         scale={0.1}
-        object={gltf?.scene}
+        object={getScene(gltf)}
         position={[0, 0, 0]}
         onClick={() => click(!clicked)}
       />
